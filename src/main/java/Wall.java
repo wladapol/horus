@@ -25,12 +25,13 @@ public class Wall implements Structure {
         return findAllLeafBlocks().size();
     }
 
-    private List<Block> findAllLeafBlocks() {
+    public List<Block> findAllLeafBlocks() {
         return blocks.stream().flatMap(this::flatten).toList();
     }
 
     private Stream<Block> flatten(Block block) {
-        return block instanceof CompositeBlock ? ((CompositeBlock) block).getBlocks().stream().flatMap(this::flatten) : Stream.of(block);
+        return block instanceof CompositeBlock ?
+                Stream.concat(((CompositeBlock) block).getBlocks().stream().flatMap(this::flatten), Stream.of(block)) : Stream.of(block);
     }
 
 }
