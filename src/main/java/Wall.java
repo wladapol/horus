@@ -30,8 +30,8 @@ public class Wall implements Structure {
     }
 
     private Stream<Block> flatten(Block block) {
-        return block instanceof CompositeBlock ?
-                Stream.concat(((CompositeBlock) block).getBlocks().stream().flatMap(this::flatten), Stream.of(block)) : Stream.of(block);
+        return block instanceof CompositeBlock compositeBlock ?
+                Stream.concat(compositeBlock.getBlocks().stream().flatMap(this::flatten), Stream.of(block)) : Stream.of(block);
     }
 
 }
