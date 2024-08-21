@@ -33,7 +33,6 @@ class WallTest {
         Optional<Block> foundBlock = wall.findBlockByColor("red");
 
         //then
-
         assertTrue(foundBlock.isPresent(), "red block should be present");
         assertEquals(foundBlock.get(), redBlock);
     }
@@ -86,7 +85,7 @@ class WallTest {
         List<Block> paperBlocks = wall.findBlocksByMaterial("paper");
 
         //then
-        assertEquals(paperBlocks.size(), 3);
+        assertEquals(3, paperBlocks.size());
 
         assertTrue(paperBlocks.contains(paperRedBlock));
         assertTrue(paperBlocks.contains(paperBlueBlock));
@@ -107,8 +106,7 @@ class WallTest {
         int count = wall.count();
 
         //then
-        assertEquals(count, 4);
+        assertEquals(4, count);
     }
-
 
 }
