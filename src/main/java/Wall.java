@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 public class Wall implements Structure {
-    private List<Block> blocks;
+    private final List<Block> blocks;
 
     public Wall(List<Block> blocks) {
         this.blocks = new ArrayList<>(blocks);
@@ -12,20 +12,20 @@ public class Wall implements Structure {
 
     @Override
     public Optional<Block> findBlockByColor(String color) {
-        return findAllLeafBlocks().stream().filter(block -> block.getColor().equals(color)).findAny();
+        return findAllBlocks().stream().filter(block -> block.getColor().equals(color)).findAny();
     }
 
     @Override
     public List<Block> findBlocksByMaterial(String material) {
-        return findAllLeafBlocks().stream().filter(block -> block.getMaterial().equals(material)).toList();
+        return findAllBlocks().stream().filter(block -> block.getMaterial().equals(material)).toList();
     }
 
     @Override
     public int count() {
-        return findAllLeafBlocks().size();
+        return findAllBlocks().size();
     }
 
-    public List<Block> findAllLeafBlocks() {
+    private List<Block> findAllBlocks() {
         return blocks.stream().flatMap(this::flatten).toList();
     }
 
